@@ -1,0 +1,10 @@
+zeus
+poseidon
+hades
+athena
+helios
+hermes
+apollo
+ares
+aphrodite
+hercules
