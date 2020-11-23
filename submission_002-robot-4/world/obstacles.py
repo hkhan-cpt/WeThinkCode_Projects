@@ -1,5 +1,6 @@
 import random
 
+#Initializing global variable
 block_list = []
 
 def get_obstacles():
@@ -17,8 +18,8 @@ def get_obstacles():
     return block_list
 
 
-def is_position_blocked(x,y):
-    """Comapares the robot position with the position of the blocks and returns a Boolean.
+def is_position_blocked(x, y):
+    """Compares the robot's current position with the position of the blocks to check for an obstacle.
 
     Args:
         x (int): x co-ordinate
@@ -27,20 +28,21 @@ def is_position_blocked(x,y):
     Returns:
         [Boolean]: True or False depending on certain conditions being met.
     """
-
     global block_list
-    for co_ordinates in block_list:
-        if co_ordinates[0] <= x <= co_ordinates[0]+4 and co_ordinates[1] <= y <= co_ordinates[1]:
+    # print(block_list)
+    for co_ords in block_list:
+        if co_ords[0] <= x <= co_ords[0]+4 and co_ords[1] <= y <= co_ords[1]+4:
             return True
     return False
 
 
-def is_path_blocked(x1,y1, x2, y2):
-    """[summary]
+def is_path_blocked(x1, y1, x2, y2):
+    """Compares the robot's current position with the intended destination based on the user's input 
+    to check if an obstacle is in the way.
 
     Args:
-        x1 (int): old x co-ordinate
-        y1 (int): old y co-ordinate
+        x1 (int): current x co-ordinate
+        y1 (int): current y co-ordinate
         x2 (int): new x co-ordinate
         y2 (int): new y co-ordinate
 
@@ -49,18 +51,19 @@ def is_path_blocked(x1,y1, x2, y2):
     """
 
     # Caters for moving backward
-    if x1 > x2:
-        (x1,x2) = (x2,x1)
     if y1 > y2:
-        (y1,y2) = (y2, y1)
+        (y1, y2) = (y2, y1)
+    if x1 > x2:
+        (x1, x2) = (x2, x1)
 
-    if y1==y2:
-        for x in range(x1,x2,+1):
-            if is_position_blocked(x,y1):
+    if y1 == y2:
+        for x in range(x1, x2+1):
+            if is_position_blocked(x, y1):
                 return True
 
-    if x1==x2:
-        for y in range(y1,y2,+1):
-            if is_position_blocked(x1,y):
+    if x1 == x2:
+        for y in range(y1, y2+1):
+            if is_position_blocked(x1, y):
                 return True
+
     return False

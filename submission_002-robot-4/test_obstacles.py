@@ -25,8 +25,8 @@ class MyTestCase(unittest.TestCase):
     def test_is_path_blocked(self):
         obstacles.block_list = [(12,95), (-5,85), (-121,-23)]
 
-        self.assertTrue(obstacles.is_path_blocked(12,54, 12, 97))
-        self.assertFalse(obstacles.is_path_blocked(23,-23, 23, -125))
+        self.assertTrue(obstacles.is_path_blocked(12,54, 12,97))
+        self.assertFalse(obstacles.is_path_blocked(23,-23, 23,-125))
 
 
 if __name__ == "__main__":

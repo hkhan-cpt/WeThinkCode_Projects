@@ -1,12 +1,14 @@
 import sys
 from world import obstacles
 
+
 # Checking which module to import
 turtle = False
-if "turtle".lower() in sys.argv:
+if "turtle" in sys.argv:
     turtle = True
     from world.turtle import world
 else:
+    turtle = False
     from world.text import world
 
 
@@ -458,6 +460,7 @@ def robot_start():
     output(robot_name, "Hello kiddo!")
 
     block_list = obstacles.get_obstacles()
+    # print(block_list)
     if turtle == False and len(block_list) > 0:
         world.list_obstacles(block_list)
 
@@ -468,15 +471,15 @@ def robot_start():
     history = []
     silent, reverse = False, False
 
-    turtle = False
-    obstacles.block_list = []
-    world.blocked = False
-
     command = get_command(robot_name)
     history = store_history(command, valid_commands)
     while handle_command(robot_name, command):
         command = get_command(robot_name)
         history = store_history(command, valid_commands)
+
+    turtle = False
+    obstacles.block_list = []
+    world.blocked = False
 
     output(robot_name, "Shutting down..")
 

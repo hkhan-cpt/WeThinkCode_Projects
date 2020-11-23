@@ -38,8 +38,10 @@ block = turtle.Turtle()
 block.shape("square")
 block.color("red")
 block.shapesize(0.01)
-block.speed(10)
+block.speed(0)
 
+
+# obstacles.create_obstacles()
 block_list = obstacles.get_obstacles()
 for co_ordinates in block_list:
     block.penup()
@@ -104,7 +106,7 @@ def update_position(steps, robot_name):
     elif directions[current_direction_index] == 'left':
         new_x = new_x - steps
 
-    if obstacles.is_path_blocked(position_x,position_y, new_x, new_y):
+    if obstacles.is_path_blocked(position_x, position_y, new_x, new_y):
         print(robot_name+ ": Sorry, there is an obstacle in the way.")
         blocked = True
         return True
